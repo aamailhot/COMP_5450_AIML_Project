@@ -6,12 +6,18 @@
 thisFilesPath = fileparts(mfilename('fullpath'));
 rootFolder = fileparts(thisFilesPath);
 
-labelFile = 'train-labels-MINST.idx1-ubyte';
+%labelFile = 'Fashion-MNIST-train-labels-idx1-ubyte';
+
+trainLabelFile = 'MNIST-train-labels-idx1-ubyte';
 
 % ==============================================
 % ===    PLACE ADDPATHS HERE AS NEEDED       ===
 % ==============================================
-run([rootFolder, filesep, 'setup
-% ...
+run([rootFolder, filesep, 'setup_paths_all.m']);
+% Add more paths like this!
+%run([rootFolder, filesep, 'setup_paths_OTHERS.m']);
 
-dataLabels = loadData(labelFile);
+% ==============================================
+% ===    LOAD THE DATA                       ===
+% ==============================================
+dataTraiLabels = loadData(trainLabelFile);

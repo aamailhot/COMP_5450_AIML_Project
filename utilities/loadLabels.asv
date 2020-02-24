@@ -1,0 +1,17 @@
+% Courtesy: https://www.youtube.com/watch?v=ZOXOwYUVCqw&feature=youtu.be
+% Time: 1
+function data = loadImages(filename)
+    fp = fopen(filename, 'rb');
+    assert(fp ~= -1, ['Could not open file [', filename, ']!']);
+
+    magic = fread(fp, 1, 'int32', 0, 'ieee-be');
+    assert(magic == 2049, ['Bad magic number of [', magic, ...
+        '] in file [', filename, ']']);
+    
+    numDataEntries = fread(fp, 1, 'int32', 0, 'ieee-be');
+    data = fread(fp, inf, 'unsigned char');
+    assert(size(data,1) == numDataEntries, ['Mismatch in label count!', ...
+        'field:[', numDataEntries, '], calculated:[', size(data,1), '].']);
+    
+    fclose(fp);
+end

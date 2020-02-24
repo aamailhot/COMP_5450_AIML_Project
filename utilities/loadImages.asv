@@ -1,0 +1,26 @@
+% Courtesy: https://www.youtube.com/watch?v=ZOXOwYUVCqw&feature=youtu.be
+% Time: 15:03
+function data = loadImages(filename)
+    fp = fopen(filename, 'rb');
+    assert(fp ~= -1, ['Could not open file [', filename, ']!']);
+
+    magic = fread(fp, 1, 'int32', 0, 'ieee-be');
+    assert(magic == 2049, ['Bad magic number of [', magic, ...
+        '] in file [', filename, ']']);
+    
+    % Next three values describe data dimensions
+    numImages = fread(fp, 1, 'int32', 0, 'ieee-be');
+    numRows = fread(fp, 1, 'int32', 0, 'ieee-be');
+    numCols = fread(fp, 1, 'int32', 0, 'ieee-be');
+    
+    % Read out the chunk of image data
+    data = fread(fp, inf, 'unsigned char=>unsigned char');
+    % Format/arrange the data
+    data = reshape(data, numCols, numRows, numImages);
+    data = permute(data, [2 1 3]);
+
+    assert(size(data,1) == numDataEntries, ['Mismatch in label count!', ...
+        'field:[', numDataEntries, '], calculated:[', size(data,1), '].']);
+    
+        fclose(fp);
+end
