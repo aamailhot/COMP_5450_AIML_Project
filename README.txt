@@ -10,10 +10,11 @@ which should be descriptive and replaced appropriately. E.g.:
    > 'my_awesome_function([inputs_1], [input_2])'
 
 = Structure and Usage =
-This Matlab code base is organized in the following way (and is described 
-in a rough workflow/hierarchy sequence).
+There are in fact TWO projects in this repo; a Matlab code base and a Python code base.
+Each codebase is organized in the following way (and is described in a rough 
+workflow/hierarchy sequence).
 
-== Top Level: setup_paths_XYZ ==
+== .\matlab_project\setup_paths_XYZ.m ==
 Various scripts to load the desired path structure into your Matlab environment 
 in order to more easily access the other files herein.
 
@@ -31,7 +32,7 @@ Just run the script by its name and it will load the desired path(s). E.g.:
 * Ideally all code should reside within the repo, unless there is a pressing
 reason to do otherwise.
    
-== Subdir: .\drivers ==
+== Subdir: .\matlab_project\drivers ==
 Various drivers that do some interesting 'end-to-end' coherent executions. Test 
 and prototype drivers are ok to have here too (ideally they'll be clear named and 
 described).
@@ -43,11 +44,12 @@ No need to first run any setup_paths_XYZ files if you cd to the drivers director
 first, as each driver file should execute the necessary add_path_XYZ script(s) at 
 the top of its code.
 
-== Subdir: .\utilities ==
+== Subdir: .\matlab_project\utilities ==
 Various functions that may take one or more inputs and return one or more outputs 
 see the functions' headers for more info. Generally the intent here is to not call 
 these functions directly though but rather to call the driver scripts that will 
 call them internally.
 
 == Subdir: .\data ==
-Data files for use with this code repository. (MNIST, etc).
+Raw (public/downloaded/extracted) data files for use everywhere in this code 
+repository. (MNIST, etc).
