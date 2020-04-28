@@ -24,7 +24,20 @@ run([rootFolder, filesep, 'setup_paths_all.m']);
 dataTrainLabels = loadLabels(filenameTrainLabels);
 dataTrainImages = loadImages(filenameTrainImages);
 
-% Test one image display!
+% ==============================================
+% ===    INITIAL RAW IMAGES                  ===
+% ==============================================
+% ====
+figure;
 idx = uint32(rand(1)*60000);
 colormap(gray(256));
+% Plot some images
 imagesc(dataTrainImages(:, :, idx), [-1 1]);
+% ====
+figure;
+perm = randperm(10000,20);
+for i = 1:20
+    subplot(4,5,i);
+    imshow(dataTrainImages(:, :, perm(i)));
+end
+

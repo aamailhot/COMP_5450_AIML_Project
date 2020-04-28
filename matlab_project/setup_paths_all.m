@@ -5,6 +5,6 @@ rootFolder = thisFilesPath;
 
 % === PUT ADDPATHS HERE ===
 addpath(rootFolder);
-addpath(genpath([rootFolder, filesep, 'data']));
+addpath(genpath([rootFolder, filesep, '..', filesep, 'data']));
 addpath(genpath([rootFolder, filesep, 'drivers']));
 addpath(genpath([rootFolder, filesep, 'utilities']));
